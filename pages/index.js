@@ -39,12 +39,12 @@ export default function Home() {
 
       <RoomsSection />
 
-      <AmenitiesSection />
-
       <EventsSection />
 
       <QuoteSection />
 
+      <AmenitiesSection />
+      
       <GallerySection />
 
       <TestimonialsSection />
