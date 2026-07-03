@@ -1,0 +1,42 @@
+export const events = [
+  {
+    id: 1,
+    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85',
+    num: '01 —',
+    name: 'Weddings',
+    sub: 'Bespoke celebrations set against our heritage-inspired spaces. A day that lasts a lifetime.',
+    large: true,
+  },
+  {
+    id: 2,
+    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80',
+    num: '02 —',
+    name: 'Corporate Events',
+    sub: 'Sophisticated spaces for meetings and conferences that inspire.',
+    large: false,
+  },
+  {
+    id: 3,
+    img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80',
+    num: '03 —',
+    name: 'Engagements',
+    sub: 'An intimate setting to mark the beginning of forever.',
+    large: false,
+  },
+  {
+    id: 4,
+    img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80',
+    num: '04 —',
+    name: 'Birthdays',
+    sub: 'From intimate dinners to grand celebrations, tailored to you.',
+    large: false,
+  },
+  {
+    id: 5,
+    img: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=700&q=80',
+    num: '05 —',
+    name: 'Get-togethers',
+    sub: 'Relaxed spaces for family reunions and social gatherings.',
+    large: false,
+  },
+]
