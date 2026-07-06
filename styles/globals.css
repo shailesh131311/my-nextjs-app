@@ -7085,6 +7085,17 @@ textarea.bc-input {
     max-width: 96vw;
     max-height: 75vh;
   }
+
+  .modal-thumb {
+    width: 52px;
+    height: 36px;
+    border: 2px solid var(--gold, #AC9256);
+    border-radius: 2px;
+    padding: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    background: transparent;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
