@@ -191,6 +191,15 @@ function RoomFeatured({ room, onViewDetails, onBookRoom }) {
                         View Details
                     </button>
                     <button className="btn-outline-forest" onClick={() => onBookRoom(room.id)}>
+                        Know More
+                    </button>
+                    <button
+                        className="btn-outline-forest"
+                        onClick={() =>
+                            window.location.href =
+                            "https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622"
+                        }
+                    >
                         Book This Room
                     </button>
                 </div>
@@ -319,7 +328,7 @@ function CtaSection() {
                         </p>
                         <div className="cta-btns fade-up in fd4">
                             <a href="tel:+918446995333" className="btn-gold">Call to Reserve</a>
-                            <Link href="/#booking-bar" legacyBehavior>
+                            <Link href="https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622" legacyBehavior>
                                 <a className="btn-gold-outline">Book Online</a>
                             </Link>
                         </div>
@@ -416,9 +425,18 @@ function RoomModal({ roomId, rooms, onClose, onBookRoom }) {
                             <div className="mpr-night">per night · taxes inclusive</div>
                         </div>
                         <button
-                            className="btn-forest"
+                            className="btn-outline-forest"
                             id="modalBookBtn"
                             onClick={() => { onClose(); onBookRoom(room.id); }}
+                        >
+                            Know More
+                        </button>
+                        <button
+                            className="btn-forest"
+                            onClick={() =>
+                                window.location.href =
+                                "https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622"
+                            }
                         >
                             Book This Room
                         </button>

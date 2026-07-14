@@ -211,7 +211,7 @@ function AboutPage() {
                             </p>
 
                             <div style={{ marginTop: '36px' }} className="fade-up fd5">
-                                <Link href="/#booking-bar" className="btn-forest">
+                                <Link href="/rooms" className="btn-forest">
                                     Begin Your Stay
                                 </Link>
                             </div>
@@ -485,7 +485,7 @@ function AboutPage() {
                                 and to a home that feels like it was made for you.
                             </p>
                             <div className="cta-btns fade-up fd4">
-                                <Link href="/#booking-bar" className="btn-forest">
+                                <Link href="/rooms" className="btn-forest">
                                     Book Your Stay
                                 </Link>
                                 <a href="tel:+918446995333" className="btn-outline-forest">

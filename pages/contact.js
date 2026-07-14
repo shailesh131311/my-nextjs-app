@@ -579,7 +579,7 @@ function CtaStrip() {
                             Every visit is a chapter in a larger story — one of culture, warmth, and the quiet luxury of feeling truly at home.
                         </p>
                         <div className="cta-btns fade-up fd4 in">
-                            <a href="index.html#booking-bar" className="btn-forest">Book Direct</a>
+                            <a href="https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622" className="btn-forest">Book Direct</a>
                             <a href="tel:+917798685666" className="btn-outline-forest">Call Us Now</a>
                         </div>
                     </div>

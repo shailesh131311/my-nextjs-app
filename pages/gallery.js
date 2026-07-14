@@ -241,7 +241,7 @@ function CtaStrip() {
                             The warmth, the fragrance, the quiet luxury of Acasa — some things can only be felt. Come and see for yourself.
                         </p>
                         <div className="cta-btns fade-up fd4">
-                            <Link href="/#booking-bar" className="btn-forest">Book Your Stay</Link>
+                            <Link href="/rooms" className="btn-forest">Book Your Stay</Link>
                             <Link href="/contact" className="btn-outline-forest">Contact Us</Link>
                         </div>
                     </div>

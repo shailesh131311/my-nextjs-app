@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect } from "react";
 
 // ── Scroll reveal hook ────────────────────────────────────────────────────────
@@ -434,9 +435,9 @@ export default function EventsAttractionsPage() {
                                     <i className="fa fa-phone" style={{ marginRight: 8 }} />
                                     Call Concierge
                                 </a>
-                                <a href="index.html#booking-bar" className="btn-outline-forest">
+                                <Link href="/rooms" className="btn-outline-forest">
                                     Book Your Stay
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

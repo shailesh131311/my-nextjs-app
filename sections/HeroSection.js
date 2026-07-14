@@ -22,8 +22,11 @@ export default function HeroSection() {
             elevated stays, timeless celebrations, and refined experiences.
           </p>
           <div className="hero-cta-row fade-up" style={{ transitionDelay: '.65s' }}>
-            <a href="#booking-bar" className="btn-gold">Book Your Stay</a>
-            <Link href="/rooms" className="btn-outline-white">
+            
+            <Link href="/rooms" className="btn-gold">
+              Book Your Stay
+            </Link>
+            <Link href="/events" className="btn-outline-white">
               Plan Your Celebration
             </Link>
           </div>

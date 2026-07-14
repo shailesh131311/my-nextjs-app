@@ -17,7 +17,7 @@ export default function CtaStrip() {
               and the quiet luxury of feeling truly at home.
             </p>
             <div className="cta-btns fade-up fd4">
-              <a href="#booking-bar" className="btn-forest">Book Direct</a>
+              <a href="https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622" className="btn-forest">Book Direct</a>
               <a href="tel:+918446995333" className="btn-outline-forest">Call Us Now</a>
             </div>
           </div>

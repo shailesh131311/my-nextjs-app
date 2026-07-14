@@ -465,7 +465,7 @@ ul {
   color: var(--forest);
   background: transparent;
   border: 1.5px solid var(--forest);
-  padding: 15px 40px;
+  padding: 15px 22px;
   display: inline-block;
   cursor: pointer;
   transition: all .28s;
@@ -2931,7 +2931,7 @@ footer {
 
 .rf-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 

@@ -294,7 +294,7 @@ function RoomDetailModal({ room, onClose }) {
             </div>
 
             <Link
-              href={`/rooms/${room.id}`}
+              href={`https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622`}
               className="btn-forest"
               onClick={onClose}
             >
@@ -424,7 +424,7 @@ export default function RoomsSection() {
                         <div className="room-price-label">per night</div>
                       </div>
                       <Link
-                        href={`/rooms/${room.id}`}
+                        href={`https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622`}
                         className="sec-link"
                       >
                         Book Room
