@@ -444,7 +444,7 @@ ul {
   color: var(--white);
   background: var(--forest);
   border: 1.5px solid var(--forest);
-  padding: 15px 40px;
+  padding: 15px 23px;
   display: inline-block;
   cursor: pointer;
   transition: all .28s;

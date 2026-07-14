@@ -71,18 +71,6 @@ function normaliseRoom(r) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HELPERS
-// ─────────────────────────────────────────────────────────────────────────────
-
-function fmt(n) {
-    return "₹" + n.toLocaleString("en-IN");
-}
-
-function toDateStr(d) {
-    return d.toISOString().split("T")[0];
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // SCROLL REVEAL
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -171,7 +159,7 @@ function Lightbox({ photos, startIndex, onClose }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BOOKING CARD
+// POLICIES
 // ─────────────────────────────────────────────────────────────────────────────
 
 const POLICIES = [
@@ -180,194 +168,6 @@ const POLICIES = [
     { icon: "fa-child", title: "Children & Extra Beds", desc: "Children under 5 stay free. Extra mattresses and cribs available on request, subject to availability." },
     { icon: "fa-paw", title: "Pet Policy", desc: "We welcome well-behaved pets in selected room categories with prior arrangement. Contact our concierge." },
 ];
-
-function BookingCard({ room }) {
-    const today = toDateStr(new Date());
-    const [checkIn, setCheckIn] = useState("");
-    const [checkOut, setCheckOut] = useState("");
-    const [adults, setAdults] = useState("2 Adults");
-    const [children, setChildren] = useState("0 Children");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [requests, setRequests] = useState("");
-    const [success, setSuccess] = useState(false);
-    const [refCode, setRefCode] = useState("");
-    const [submitting, setSubmitting] = useState(false);
-
-    const nights = checkIn && checkOut ? Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000) : 0;
-    const roomCost = nights > 0 ? nights * room.price : 0;
-    const tax = Math.round(roomCost * 0.18);
-    const total = roomCost + tax;
-
-    const minCheckOut = checkIn
-        ? toDateStr(new Date(new Date(checkIn).getTime() + 86400000))
-        : today;
-
-    const handleSubmit = async () => {
-        if (!name.trim()) { alert("Please enter your full name."); return; }
-        if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) { alert("Please enter a valid email."); return; }
-        if (!phone.trim()) { alert("Please enter your phone number."); return; }
-        if (!checkIn) { alert("Please select a check-in date."); return; }
-        if (!checkOut) { alert("Please select a check-out date."); return; }
-        if (new Date(checkOut) <= new Date(checkIn)) { alert("Check-out must be after check-in."); return; }
-
-        setSubmitting(true);
-        try {
-            const payload = {
-                room_id: room.id,
-                check_in: checkIn,
-                check_out: checkOut,
-                adults,
-                children,
-                guest_name: name,
-                guest_email: email,
-                guest_phone: phone,
-                special_requests: requests,
-            };
-
-            let booked = false;
-            try {
-                const res = await fetch(`${BASE_URL}/api/bookings/`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                });
-                if (res.ok) {
-                    const json = await res.json();
-                    if (json.status && json.data?.reference_code) {
-                        setRefCode(json.data.reference_code);
-                        booked = true;
-                    }
-                }
-            } catch (_) { /* fall through to local ref */ }
-
-            if (!booked) {
-                setRefCode("ACB-" + Math.floor(100000 + Math.random() * 900000));
-            }
-            setSuccess(true);
-        } finally {
-            setSubmitting(false);
-        }
-    };
-
-    return (
-        <div className="booking-card" id="booking-card">
-            <div className="bc-header">
-                <div className="bc-room-name">{room.name}</div>
-                <span className="bc-price">{room.priceDisplay}</span>
-                <span className="bc-night">/ night</span>
-            </div>
-
-            {!success ? (
-                <>
-                    <div className="bc-body">
-                        <div className="bc-row-2">
-                            <div className="bc-field">
-                                <label className="bc-label">Check In</label>
-                                <input type="date" className="bc-input" min={today} value={checkIn}
-                                    onChange={(e) => { setCheckIn(e.target.value); setCheckOut(""); }} />
-                            </div>
-                            <div className="bc-field">
-                                <label className="bc-label">Check Out</label>
-                                <input type="date" className="bc-input" min={minCheckOut} value={checkOut}
-                                    onChange={(e) => setCheckOut(e.target.value)} />
-                            </div>
-                        </div>
-                        <div className="bc-row-2">
-                            <div className="bc-field">
-                                <label className="bc-label">Adults</label>
-                                <select className="bc-input" value={adults} onChange={(e) => setAdults(e.target.value)}>
-                                    <option>1 Adult</option><option>2 Adults</option>
-                                    <option>3 Adults</option><option>4 Adults</option>
-                                </select>
-                            </div>
-                            <div className="bc-field">
-                                <label className="bc-label">Children</label>
-                                <select className="bc-input" value={children} onChange={(e) => setChildren(e.target.value)}>
-                                    <option>0 Children</option><option>1 Child</option><option>2 Children</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="bc-field">
-                            <label className="bc-label">Full Name</label>
-                            <input type="text" className="bc-input" placeholder="Your full name"
-                                value={name} onChange={(e) => setName(e.target.value)} />
-                        </div>
-                        <div className="bc-field">
-                            <label className="bc-label">Email Address</label>
-                            <input type="email" className="bc-input" placeholder="your@email.com"
-                                value={email} onChange={(e) => setEmail(e.target.value)} />
-                        </div>
-                        <div className="bc-field">
-                            <label className="bc-label">Phone Number</label>
-                            <input type="tel" className="bc-input" placeholder="+91 00000 00000"
-                                value={phone} onChange={(e) => setPhone(e.target.value)} />
-                        </div>
-                        <div className="bc-field">
-                            <label className="bc-label">
-                                Special Requests{" "}
-                                <span style={{ color: "var(--grey)", textTransform: "none", letterSpacing: 0, fontSize: 9 }}>(optional)</span>
-                            </label>
-                            <input type="text" className="bc-input" placeholder="Early check-in, occasion, floor preference…"
-                                value={requests} onChange={(e) => setRequests(e.target.value)} />
-                        </div>
-
-                        <div className="bc-divider" />
-
-                        <div style={{ marginBottom: 10 }}>
-                            <div className="bc-summary-row">
-                                <span className="bc-summary-lbl">
-                                    {nights > 0 ? `${nights} night${nights > 1 ? "s" : ""} × ${fmt(room.price)}` : "Select dates to see pricing"}
-                                </span>
-                                <span className="bc-summary-val">{roomCost > 0 ? fmt(roomCost) : "—"}</span>
-                            </div>
-                            <div className="bc-summary-row">
-                                <span className="bc-summary-lbl">Taxes &amp; Fees (18%)</span>
-                                <span className="bc-summary-val">{tax > 0 ? fmt(tax) : "—"}</span>
-                            </div>
-                            <div className="bc-divider" style={{ margin: "6px 0" }} />
-                            <div className="bc-summary-row total">
-                                <span className="bc-summary-lbl">Total</span>
-                                <span className="bc-summary-val">{total > 0 ? fmt(total) : "—"}</span>
-                            </div>
-                        </div>
-
-                        <button className="bc-submit" onClick={handleSubmit} disabled={submitting}>
-                            {submitting ? "Confirming…" : "Confirm Reservation"}
-                        </button>
-                    </div>
-
-                    <div className="bc-call">
-                        Or call us: <a href="tel:+918446995333">+91 84469 95333</a>
-                    </div>
-
-                    <div className="bc-perks">
-                        {[
-                            { icon: "fa-tag", text: "Best rate guaranteed on direct bookings" },
-                            { icon: "fa-ban", text: "Free cancellation up to 48 hrs before arrival" },
-                            { icon: "fa-shield-halved", text: "Secure & private reservation" },
-                        ].map((p, i) => (
-                            <div key={i} className="bc-perk">
-                                <i className={`fa ${p.icon}`} /> {p.text}
-                            </div>
-                        ))}
-                    </div>
-                </>
-            ) : (
-                <div className="booking-success show">
-                    <div className="bs-icon"><i className="fa fa-check" /></div>
-                    <h3 className="sec-title dark" style={{ fontSize: 22, marginBottom: 10 }}>Booking Confirmed!</h3>
-                    <p className="sec-body" style={{ marginBottom: 16 }}>
-                        Your reservation has been received. Our team will confirm within 2 hours and send details to your email.
-                    </p>
-                    <div className="bs-ref">{refCode}</div>
-                    <Link href="/rooms" className="btn-outline-forest" style={{ display: "inline-block" }}>Browse More Rooms</Link>
-                </div>
-            )}
-        </div>
-    );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // LOADING SKELETON
@@ -395,7 +195,6 @@ function DetailSkeleton() {
 
 export default function RoomDetailPage() {
     const router = useRouter();
-    
 
     const { id: roomId } = router.query;
 
@@ -489,10 +288,6 @@ export default function RoomDetailPage() {
         if (Math.abs(dx) > 50) dx < 0 ? goToPhoto(currentPhoto + 1, "next") : goToPhoto(currentPhoto - 1, "prev");
     };
 
-    const scrollToBooking = () => {
-        document.getElementById("booking-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
-
     // ── Render states ─────────────────────────────────────────────────────────
 
     if (loading) return <DetailSkeleton />;
@@ -511,12 +306,16 @@ export default function RoomDetailPage() {
 
     const R = room;
 
+    // Full-width fallback style so sections stretch even if .detail-layout's
+    // CSS still has a 2-column (content + sidebar) grid defined somewhere.
+    const fullWidthStyle = { gridColumn: "1 / -1", width: "100%" };
+
     return (
         <>
             {/* ── ANNOUNCE BAR ── */}
             <div className="announce-bar">
                 <strong>Website Exclusive:</strong> Save 20% on direct bookings &nbsp;·&nbsp; Use code <strong>ACASA20</strong> &nbsp;·&nbsp;{" "}
-                <a href="#booking-card" onClick={(e) => { e.preventDefault(); scrollToBooking(); }}>Book Now</a>
+                <a href="https://acasanextapp.netlify.app/">Book Now</a>
             </div>
 
             {/* ── STICKY BAR ── */}
@@ -524,7 +323,7 @@ export default function RoomDetailPage() {
                 <div className="sticky-book-bar">
                     <span className="sbb-name">{R.name}</span>
                     <span className="sbb-price">{R.priceDisplay} <small>/ night</small></span>
-                    <button className="sbb-btn" onClick={scrollToBooking}>Reserve Now</button>
+                    <a href="https://acasanextapp.netlify.app/" className="sbb-btn">Reserve Now</a>
                 </div>
             )}
 
@@ -587,11 +386,11 @@ export default function RoomDetailPage() {
                 )}
             </section>
 
-            {/* ── DETAIL LAYOUT ── */}
+            {/* ── DETAIL LAYOUT (sidebar removed — everything full width) ── */}
             <div className="detail-layout">
 
                 {R.specs.length > 0 && (
-                    <div className="dl-specs quick-specs fade-up">
+                    <div className="dl-specs quick-specs fade-up" style={fullWidthStyle}>
                         {R.specs.map((s, i) => (
                             <div key={i} className="qs-item">
                                 <div className="qs-icon"><i className={`fa ${s.icon}`} /></div>
@@ -602,7 +401,7 @@ export default function RoomDetailPage() {
                     </div>
                 )}
 
-                <div className="dl-desc dt-section fade-up fd2">
+                <div className="dl-desc dt-section fade-up fd2" style={fullWidthStyle}>
                     <div className="dt-section-title">About This Room</div>
                     {R.lead && <blockquote className="intro-quote">{R.lead}</blockquote>}
                     {R.desc1 && <p className="sec-body">{R.desc1}</p>}
@@ -610,7 +409,7 @@ export default function RoomDetailPage() {
                 </div>
 
                 {R.amenities.length > 0 && (
-                    <div className="dl-amenities dt-section fade-up fd2">
+                    <div className="dl-amenities dt-section fade-up fd2" style={fullWidthStyle}>
                         <div className="dt-section-title">Room Amenities</div>
                         <div className="am-inline-grid">
                             {R.amenities.map((a, i) => (
@@ -623,11 +422,7 @@ export default function RoomDetailPage() {
                     </div>
                 )}
 
-                <div className="detail-sidebar dl-sidebar">
-                    <BookingCard room={R} />
-                </div>
-
-                <div className="dl-policies dt-section fade-up fd2">
+                <div className="dl-policies dt-section fade-up fd2" style={fullWidthStyle}>
                     <div className="dt-section-title">Policies &amp; Information</div>
                     <div className="policy-grid">
                         {POLICIES.map((p, i) => (
@@ -641,7 +436,7 @@ export default function RoomDetailPage() {
                 </div>
 
                 {R.reviews.length > 0 && (
-                    <div className="dl-reviews dt-section fade-up fd2">
+                    <div className="dl-reviews dt-section fade-up fd2" style={fullWidthStyle}>
                         <div className="dt-section-title">Guest Reviews</div>
                         <div className="row" style={{ margin: "0 -12px" }}>
                             {R.reviews.map((rv, i) => (
@@ -664,9 +459,12 @@ export default function RoomDetailPage() {
                     </div>
                 )}
 
-                <div className="dl-similar dt-section fade-up fd2">
+                <div className="dl-similar dt-section fade-up fd2" style={fullWidthStyle}>
                     <div className="dt-section-title">Explore More</div>
-                    <Link href="/rooms" className="btn-outline-forest">← View All Rooms &amp; Suites</Link>
+                    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                        <Link href="/rooms" className="btn-outline-forest">← View All Rooms &amp; Suites</Link>
+                        <a href="https://acasanextapp.netlify.app/" className="btn-forest">Book This Room</a>
+                    </div>
                 </div>
 
             </div>

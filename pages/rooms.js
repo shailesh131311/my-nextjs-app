@@ -194,7 +194,7 @@ function RoomFeatured({ room, onViewDetails, onBookRoom }) {
                         Know More
                     </button>
                     <button
-                        className="btn-outline-forest"
+                        className="btn-forest"
                         onClick={() =>
                             window.location.href =
                             "https://bookings.resavenue.com/engine-ibe/search?regCode=TTEC0622"
