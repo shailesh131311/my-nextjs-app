@@ -16,10 +16,10 @@ export default function AboutSection() {
           <div className="col-md-6 col-sm-12 intro-img-col">
             <div className="intro-img fade-up">
               <Image
-                src="/images/aboutimg.jpg"
+                src="/images/reception.jpg"
                 alt="About Acasa"
-                width={700}
-                height={550}
+                width={600}
+                height={900}
                 className="img-responsive"
               />
 
