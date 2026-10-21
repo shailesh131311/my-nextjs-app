@@ -29,6 +29,7 @@ function Navbar() {
     { label: 'Rooms & Suites', path: '/rooms' },
     { label: 'Events & Conferences', path: '/events' },
     { label: 'Experiences & Attractions', path: '/experiences' },
+    { label: 'Restaurant', path: '/restaurant' },   // ← new
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact Us', path: '/contact' },
   ];

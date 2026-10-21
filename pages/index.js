@@ -9,7 +9,6 @@ import WhyBookDirect from "../sections/WhyBookDirect";
 import AboutSection from "../sections/AboutSection";
 import RoomsSection from "../sections/RoomsSection";
 import AmenitiesSection from "../sections/AmenitiesSection";
-import EventsSection from "../sections/EventsSection";
 import QuoteSection from "../sections/QuoteSection";
 import GallerySection from "../sections/GallerySection";
 import TestimonialsSection from "../sections/TestimonialsSection";
@@ -39,12 +38,12 @@ export default function Home() {
 
       <RoomsSection />
 
-      <EventsSection />
+
 
       <QuoteSection />
 
       <AmenitiesSection />
-      
+
       <GallerySection />
 
       <TestimonialsSection />
