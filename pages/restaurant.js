@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Lightbox from '../components/Lightbox'
@@ -44,6 +44,7 @@ const cuisines = [
     },
 ]
 
+// cls sets the relative height of each photo: tall = 3 units, std / wide = 2 units
 const gallery = [
     { id: 1, src: '/images/toroni-gallery-1.jpg', cls: 'tall', cat: 'The dining room' },
     { id: 2, src: '/images/toroni-gallery-2.jpg', cls: 'std', cat: 'The live counter' },
@@ -51,9 +52,30 @@ const gallery = [
     { id: 4, src: '/images/toroni-gallery-4.jpg', cls: 'std', cat: 'The spread' },
     { id: 5, src: '/images/toroni-gallery-5.jpg', cls: 'tall', cat: 'Among the plants' },
     { id: 6, src: '/images/toroni-gallery-6.jpg', cls: 'std', cat: 'Quiet corners' },
+    { id: 7, src: '/images/toroni-gallery-7.jpg', cls: 'wide', cat: 'The heart of TORONI' },
+    { id: 8, src: '/images/toroni-gallery-8.jpg', cls: 'tall', cat: 'Under the relief wall' },
+    { id: 9, src: '/images/toroni-gallery-9.jpg', cls: 'std', cat: 'The kitchen shelves' },
+    { id: 10, src: '/images/toroni-gallery-10.jpg', cls: 'wide', cat: 'Along the garden wall' },
+    { id: 11, src: '/images/toroni-gallery-11.jpg', cls: 'tall', cat: 'Copper pendants' },
+    { id: 12, src: '/images/toroni-gallery-12.jpg', cls: 'std', cat: 'The coffee station' },
+    { id: 13, src: '/images/toroni-gallery-13.jpg', cls: 'std', cat: 'The red banquette' },
+    { id: 14, src: '/images/toroni-gallery-14.jpg', cls: 'wide', cat: 'Beneath the skylights' },
+    { id: 15, src: '/images/toroni-gallery-15.jpg', cls: 'tall', cat: 'The beaded lanterns' },
+    { id: 16, src: '/images/toroni-gallery-16.jpg', cls: 'std', cat: 'The green banquettes' },
+    { id: 17, src: '/images/toroni-gallery-17.jpg', cls: 'std', cat: 'Colour on the counter' },
+    { id: 18, src: '/images/toroni-gallery-18.jpg', cls: 'wide', cat: 'Warm light, soft curtains' },
+    { id: 19, src: '/images/toroni-gallery-19.jpg', cls: 'tall', cat: 'Behind the timber screen' },
+    { id: 20, src: '/images/toroni-gallery-20.jpg', cls: 'std', cat: 'The garden aisle' },
+    { id: 21, src: '/images/toroni-gallery-21.jpg', cls: 'std', cat: 'The green marble island' },
+    { id: 22, src: '/images/toroni-gallery-22.jpg', cls: 'wide', cat: 'The main hall' },
+    { id: 23, src: '/images/toroni-gallery-23.jpg', cls: 'std', cat: 'Sage and gold' },
+    { id: 24, src: '/images/toroni-gallery-24.jpg', cls: 'wide', cat: 'The buffet counter' },
+    { id: 25, src: '/images/toroni-gallery-25.jpg', cls: 'std', cat: 'Cane and teak' },
+    { id: 26, src: '/images/toroni-gallery-26.jpg', cls: 'wide', cat: 'A private corner' },
 ]
 
 // Same shape as the API photos in GallerySection
+// (same order as `gallery`, so the index of a photo here = its index in the lightbox)
 const lightboxImages = gallery.map((g) => ({
     id: g.id,
     src: g.src,
@@ -62,9 +84,38 @@ const lightboxImages = gallery.map((g) => ({
     label: g.cat,
 }))
 
+// Relative heights: tall = 3 units, std and wide = 2 units
+const UNITS = { tall: 3, std: 2, wide: 2 }
+
+// Deals photos into columns, always adding to the shortest one,
+// so every column ends at (almost) the same height
+function splitColumns(items, count) {
+    const cols = Array.from({ length: count }, () => ({ h: 0, items: [] }))
+    items.forEach((item) => {
+        const shortest = cols.reduce((a, b) => (b.h < a.h ? b : a))
+        shortest.items.push(item)
+        shortest.h += UNITS[item.cls] || 2
+    })
+    return cols.map((c) => c.items)
+}
+
 export default function Restaurant() {
+    const [colCount, setColCount] = useState(4)
     const [lbIdx, setLbIdx] = useState(null)
 
+    useEffect(() => {
+        const update = () => {
+            const w = window.innerWidth
+            setColCount(w <= 480 ? 1 : w <= 991 ? 2 : w <= 1200 ? 3 : 4)
+        }
+        update()
+        window.addEventListener('resize', update)
+        return () => window.removeEventListener('resize', update)
+    }, [])
+
+    const columns = splitColumns(gallery, colCount)
+
+    // Lightbox controls
     const openLb = (i) => setLbIdx(i)
     const closeLb = () => setLbIdx(null)
     const prevLb = () => setLbIdx((lbIdx - 1 + lightboxImages.length) % lightboxImages.length)
@@ -94,7 +145,7 @@ export default function Restaurant() {
 
             {/* ═══ STORY ═══ */}
             <section className="story-section">
-                <div className="container">
+                <div className="containerWrapper">
                     <div className="story-grid">
                         <div className="story-text-col">
                             <span className="sec-label">Our name</span>
@@ -119,7 +170,7 @@ export default function Restaurant() {
                         </div>
                         <div className="story-img-col">
                             <div className="story-img-wrap toroni-story-img">
-                                <img src="/images/toroni-story.jpg" alt="Inside the TORONI restaurant" />
+                                <img src="/images/torni-intro.jpg" alt="Inside the TORONI restaurant" />
                             </div>
                         </div>
                     </div>
@@ -145,7 +196,7 @@ export default function Restaurant() {
 
             {/* ═══ WHAT WE BELIEVE ═══ */}
             <section className="values-strip">
-                <div className="container">
+                <div className="containerWrapper">
                     <div className="values-grid">
                         {pillars.map((p) => (
                             <div className="value-item" key={p.name}>
@@ -160,7 +211,7 @@ export default function Restaurant() {
 
             {/* ═══ CUISINE ═══ */}
             <section className="am-grid-section">
-                <div className="container">
+                <div className="containerWrapper">
                     <div style={{ textAlign: 'center' }}>
                         <span className="sec-label">On the table</span>
                         <h2 className="sec-title dark">Food that brings cultures together</h2>
@@ -185,24 +236,29 @@ export default function Restaurant() {
 
             {/* ═══ GALLERY ═══ */}
             <section className="gallery-section">
-                <div className="container">
+                <div className="containerWrapper">
                     <div style={{ textAlign: 'center', marginBottom: 40 }}>
                         <span className="sec-label">A look inside</span>
                         <h2 className="sec-title dark">Come in, take a seat</h2>
                         <span className="sec-line center" />
                     </div>
-                    <div className="masonry-grid">
-                        {gallery.map((g, i) => (
-                            <div
-                                className={`masonry-item ${g.cls}`}
-                                key={g.src}
-                                onClick={() => openLb(i)}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <img src={g.src} alt={g.cat} />
-                                <div className="masonry-label">
-                                    <span className="ml-cat">{g.cat}</span>
-                                </div>
+
+                    <div className="toroni-gallery" style={{ '--cols': columns.length }}>
+                        {columns.map((col, i) => (
+                            <div className="toroni-gal-col" key={i}>
+                                {col.map((g) => (
+                                    <div
+                                        className="masonry-item toroni-gal-item"
+                                        key={g.src}
+                                        style={{ '--u': UNITS[g.cls] || 2, cursor: 'pointer' }}
+                                        onClick={() => openLb(gallery.indexOf(g))}
+                                    >
+                                        <img src={g.src} alt={g.cat} loading="lazy" />
+                                        <div className="masonry-label">
+                                            <span className="ml-cat">{g.cat}</span>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         ))}
                     </div>
@@ -213,7 +269,7 @@ export default function Restaurant() {
 
             {/* ═══ RESERVE ═══ */}
             <section className="enquiry-section">
-                <div className="container">
+                <div className="containerWrapper">
                     <span className="script">Every guest is family</span>
                     <h2>Reserve your table at TORONI</h2>
                     <p>
