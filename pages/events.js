@@ -78,19 +78,32 @@ const venues = [
     },
 
     {
-        num: "04", name: "DINING EXPERIENCES (Opening Soon) ",
-        badge: "Business Ready", badgeStyle: {},
-        tagline: "Opening Soon ",
-        desc: "Acasa The Collective is set to introduce thoughtfully curated dining experiences designed to complement the spirit of contemporary luxury and refined hospitality. From elegant all-day dining and artisanal café experiences to elevated lounge and bar concepts, our upcoming culinary destinations will offer immersive spaces crafted for meaningful conversations, indulgent moments, and memorable gatherings.",
-        img: "../images/aboutimg.jpg",
-        capacity: 150, capacityTagStyle: {}, reverse: true,
+        num: "04",
+        name: "TORONI RESTAURANT",
+        badge: "Dining Experience",
+        badgeStyle: {},
+        tagline: "A welcome that feels like home",
+        desc: "TORONI brings together the spirit of Greek hospitality and the warmth of the Indian Toran through a memorable dining experience. Designed around shared tables, long conversations and thoughtful cuisine, TORONI is a place to unwind, connect and savour meaningful moments.",
+        img: "/images/torni-intro.jpg",
+        capacity: 150,
+        capacityTagStyle: {},
+        reverse: true,
+
         specs: [
-            { icon: "fa fa-expand", val: "2,400 sqft", lbl: "Area" },
+            { icon: "fa fa-utensils", val: "Restaurant", lbl: "Experience" },
             { icon: "fa fa-users", val: "150", lbl: "Capacity" },
-            { icon: "fa fa-display", val: "4K AV", lbl: "Display" },
-            { icon: "fa fa-wifi", val: "1 Gbps", lbl: "Wi-Fi" },
+            { icon: "fa fa-leaf", val: "Garden", lbl: "Setting" },
+            { icon: "fa fa-heart", val: "Family", lbl: "Hospitality" },
         ],
-        features: ["4K Projection", "Video Conferencing", "Modular Setup", "Coffee Station", "Secretarial Support", "Whiteboard"],
+
+        features: [
+            "Greek-Inspired Hospitality",
+            "Indian Culinary Influence",
+            "Shared Dining",
+            "Curated Cuisine",
+            "Garden Setting",
+            "Warm & Welcoming Ambience"
+        ],
     },
 ];
 

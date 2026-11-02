@@ -23,14 +23,7 @@ export default function AboutSection() {
                 className="img-responsive"
               />
 
-              <div className="intro-badge">
-                <div className="ib-num">5★</div>
-                <div className="ib-label">
-                  Luxury
-                  <br />
-                  Hotel
-                </div>
-              </div>
+              
             </div>
           </div>
 
@@ -67,13 +60,7 @@ export default function AboutSection() {
             </p>
 
             <div className="intro-stats fade-up fd5">
-              <div>
-                <div className="is-num">
-                  5<em>★</em>
-                </div>
-                <div className="is-lbl">Luxury Standard</div>
-              </div>
-
+              
               <div>
                 <div className="is-num">
                   200<em>+</em>

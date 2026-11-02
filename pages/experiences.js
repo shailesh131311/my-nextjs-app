@@ -143,18 +143,18 @@ const featuredAttractions = [
 
     {
         num: "05",
-        name: "Bhadra Marut Temple",
+        name: "Bhadra Maruti Temple",
         tag: "Sacred Shrine",
         tagStyle: {},
         badge: "~30 km · 35 min",
         badgeStyle: {},
         img: "../../images/maruti.jpg",
-        imgAlt: "Bhadra Marut Temple Sambhajinagar",
+        imgAlt: "Bhadra Maruti Temple Sambhajinagar",
         tagline: "Ancient Hanuman Shrine · Fierce Bhadra Form · Living Pilgrimage",
-        desc: "One of Sambhajinagar's most revered spiritual landmarks, the Bhadra Marut Temple enshrines Lord Hanuman in his powerful Bhadra Marut form. An ancient site of deep local devotion, the temple draws thousands of pilgrims every week and is particularly vibrant on Tuesdays and Saturdays — filling the air with chants, fragrance of marigolds, and the timeless rhythm of ritual.",
+        desc: "One of Sambhajinagar's most revered spiritual landmarks, the Bhadra Maruti Temple enshrines Lord Hanuman in his powerful Bhadra Maruti form. An ancient site of deep local devotion, the temple draws thousands of pilgrims every week and is particularly vibrant on Tuesdays and Saturdays — filling the air with chants, fragrance of marigolds, and the timeless rhythm of ritual.",
         highlights: [
             "Ancient temple of immense local significance",
-            "Lord Hanuman in the rare Bhadra Marut form",
+            "Lord Hanuman in the rare Bhadra Maruti form",
             "Especially vibrant on Tuesdays & Saturdays",
             "Surrounded by bustling temple bazaar",
             "A living centre of daily devotion & community",

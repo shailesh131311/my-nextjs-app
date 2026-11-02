@@ -17,9 +17,7 @@ function Footer() {
               <a href="https://www.instagram.com/acasa.in" target="_blank" rel="noreferrer" aria-label="Instagram">
                 <i className="fa-brands fa-instagram"></i>
               </a>
-              <a href="" target="_blank" rel="noreferrer" aria-label="Facebook">
-                <i className="fa-brands fa-facebook"></i>
-              </a>
+              
 
               <a href="https://maps.app.goo.gl/f85Ma2HqDaxaToRZ6" aria-label="Google">
                 <i className="fa-brands fa-google"></i>

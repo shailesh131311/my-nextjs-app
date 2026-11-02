@@ -143,40 +143,65 @@ export default function Restaurant() {
 
             <Toran />
 
-            {/* ═══ STORY ═══ */}
+            {/* ═══ OUR STORY ═══ */}
             <section className="story-section">
                 <div className="containerWrapper">
                     <div className="story-grid">
+
                         <div className="story-text-col">
-                            <span className="sec-label">Our name</span>
-                            <h2 className="sec-title dark">Two doorways, one welcome</h2>
+                            <span className="sec-label">OUR STORY</span>
+
+                            <h2 className="sec-title dark">
+                                Where Cultures Meet, and Every Meal Becomes a Memory.
+                            </h2>
+
                             <span className="sec-line" />
+
                             <p className="lead-text">
-                                Toroni is a coastal town in ancient Greece, known for its spirit of hospitality.
-                                The Toran is the garland that hangs over an Indian doorway to say: come in.
+                                Inspired by the warmth of Indian hospitality and the timeless
+                                charm of Mediterranean living, TORONI brings people together
+                                through the universal love of good food.
                             </p>
+
                             <p className="sec-body">
-                                TORONI brings the two together through the universal language of food. Tucked
-                                away from the bustle of the city, it is more than a place to eat. It is a place
-                                to unwind, connect and savour the moments that matter.
+                                Set within the elegant surroundings of ACASA – The Collective,
+                                TORONI offers a thoughtfully curated multicuisine dining
+                                experience where diverse flavours, inviting spaces and genuine
+                                hospitality come together effortlessly.
                             </p>
+
                             <p className="sec-body" style={{ marginTop: 16 }}>
-                                Inspired by shared tables, long conversations and the belief that every guest
-                                is family, TORONI offers hospitality that feels both familiar and extraordinary.
+                                Whether it’s a leisurely lunch, an intimate dinner or a
+                                gathering with friends and family, every visit is an opportunity
+                                to discover something new, savour familiar favourites and
+                                create moments worth remembering.
                             </p>
+
+                            <p className="sec-body toroni-tagline" style={{ marginTop: 20 }}>
+                                <strong>
+                                    TORONI — A place to gather, savour and belong.
+                                </strong>
+                            </p>
+
                             <div style={{ marginTop: 32 }}>
-                                <Link href="/contact" className="btn-forest">Reserve a Table</Link>
+                                <Link href="/contact" className="btn-forest">
+                                    Reserve a Table
+                                </Link>
                             </div>
                         </div>
+
                         <div className="story-img-col">
                             <div className="story-img-wrap toroni-story-img">
-                                <img src="/images/torni-intro.jpg" alt="Inside the TORONI restaurant" />
+                                <img
+                                    src="/images/torni-intro.jpg"
+                                    alt="TORONI Restaurant dining experience"
+                                />
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
-
             {/* ═══ PHILOSOPHY ═══ */}
             <section className="philosophy-section toroni-philosophy">
                 <div className="containerWrapper">

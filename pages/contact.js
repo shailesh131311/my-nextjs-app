@@ -18,16 +18,33 @@ const DEPARTMENTS = [
         title: "Reservations",
         rows: [
             {
-                icon: "fa-phone", label: "Phone",
-                value: <><a href="tel:+917798685666">+91 77986 85666</a> &nbsp;·&nbsp; <a href="tel:+918605162448">+91 86051 62448</a></>
+                icon: "fa-phone",
+                label: "Phone",
+                value: (
+                    <>
+                        <a href="tel:+917798685666">+91 77986 85666</a>
+                        &nbsp;·&nbsp;
+                        <a href="tel:+918605162448">+91 86051 62448</a>
+                    </>
+                )
             },
             {
-                icon: "fa-envelope", label: "Email",
-                value: <a href="mailto:info@chrhospitality.com">info@chrhospitality.com</a>
+                icon: "fa-envelope",
+                label: "Email",
+                value: (
+                    <a href="mailto:info@chrhospitality.com">
+                        info@chrhospitality.com
+                    </a>
+                )
             },
-            { icon: "fa-clock", label: "Hours", value: "7:00 AM – 11:00 PM, every day" },
+            {
+                icon: "fa-clock",
+                label: "Hours",
+                value: "7:00 AM – 11:00 PM, every day"
+            },
         ],
     },
+
     {
         key: "events",
         label: "Events",
@@ -35,33 +52,31 @@ const DEPARTMENTS = [
         title: "Events & Banquet",
         rows: [
             {
-                icon: "fa-phone", label: "Phone",
-                value: <a href="tel:+918806112300">+91 88061 12300</a>
+                icon: "fa-phone",
+                label: "Phone",
+                value: (
+                    <a href="tel:+918806112300">
+                        +91 88061 12300
+                    </a>
+                )
             },
             {
-                icon: "fa-envelope", label: "Email",
-                value: <a href="mailto:info@chrhospitality.com">info@chrhospitality.com</a>
+                icon: "fa-envelope",
+                label: "Email",
+                value: (
+                    <a href="mailto:info@chrhospitality.com">
+                        info@chrhospitality.com
+                    </a>
+                )
             },
-            { icon: "fa-clock", label: "Hours", value: "9:00 AM – 7:00 PM, Mon – Sat" },
+            {
+                icon: "fa-clock",
+                label: "Hours",
+                value: "9:00 AM – 7:00 PM, Mon – Sat"
+            },
         ],
     },
-    {
-        key: "concierge",
-        label: "Concierge",
-        icon: "fa-bell-concierge",
-        title: "Concierge & Guest Services",
-        rows: [
-            {
-                icon: "fa-phone", label: "Phone (24/7)",
-                value: <a href="tel:+917798685666">+91 77986 85666</a>
-            },
-            {
-                icon: "fa-envelope", label: "Email",
-                value: <a href="mailto:info@chrhospitality.com">info@chrhospitality.com</a>
-            },
-            { icon: "fa-clock", label: "Hours", value: "Available 24 hours, 7 days a week" },
-        ],
-    },
+
     {
         key: "management",
         label: "Management",
@@ -69,14 +84,28 @@ const DEPARTMENTS = [
         title: "General Management",
         rows: [
             {
-                icon: "fa-phone", label: "Phone",
-                value: <a href="tel:+918806112300">+91 88061 12300</a>
+                icon: "fa-phone",
+                label: "Phone",
+                value: (
+                    <a href="tel:+918806112300">
+                        +91 88061 12300
+                    </a>
+                )
             },
             {
-                icon: "fa-envelope", label: "Email",
-                value: <a href="mailto:info@chrhospitality.com">info@chrhospitality.com</a>
+                icon: "fa-envelope",
+                label: "Email",
+                value: (
+                    <a href="mailto:info@chrhospitality.com">
+                        info@chrhospitality.com
+                    </a>
+                )
             },
-            { icon: "fa-clock", label: "Hours", value: "9:00 AM – 6:00 PM, Mon – Fri" },
+            {
+                icon: "fa-clock",
+                label: "Hours",
+                value: "9:00 AM – 6:00 PM, Mon – Fri"
+            },
         ],
     },
 ];
@@ -145,10 +174,10 @@ const FAQS = [
 
 const SOCIAL_LINKS = [
     { href: "https://www.instagram.com/acasa.in", icon: "fa-brands fa-instagram" },
-    { href: "", icon: "fa-brands fa-facebook" },
+
 
     { href: "https://maps.app.goo.gl/f85Ma2HqDaxaToRZ6", icon: "fa-brands fa-google" },
-    { href: "https://wa.me/917798685666", icon: "fa-brands fa-whatsapp" },
+
 ];
 
 const EMPTY_FORM = {

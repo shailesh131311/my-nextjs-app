@@ -236,9 +236,15 @@ function AboutPage() {
 
                         {/* Left — image / icon block */}
                         <div className="vision-img-col fade-up">
-                            <div className="vision-icon-wrap">
-                                <i className="fa fa-eye"></i>
-                            </div>
+
+                            <img
+                                src="/images/reception.jpg"
+                                alt="Our Vision"
+                                width={600}
+                                height={700}
+                                className="vision-image"
+                            />
+
                         </div>
 
                         {/* Right — text */}
