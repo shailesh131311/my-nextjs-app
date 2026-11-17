@@ -23,6 +23,36 @@ const pillars = [
     { icon: 'fa-solid fa-leaf', name: 'Away from the bustle', desc: 'Set apart from the city, so you can unwind and be present.' },
 ]
 
+// Breakfast + All Day Dining tabs
+// Replace the image paths when the Drive photos arrive
+const diningTabs = [
+    {
+        tab: 'Breakfast',
+        title: 'Breakfast',
+        cuisine: 'Indian · Continental · Buffet',
+        timing: 'Daily: 7:00 AM – 10:30 AM',
+        note: '',
+        images: [
+            '/images/breakfast-1.jpg',
+            '/images/breakfast-2.jpg',
+            '/images/breakfast-3.jpg',
+        ],
+    },
+    {
+        tab: 'All Day Dining',
+        title: 'TORONI – All Day Dining',
+        cuisine: 'Indian · International · À La Carte · Multicuisine · Family Friendly',
+        timing: 'Daily: 12:00 PM – 11:00 PM',
+        note: 'Serving lunch, evening snacks and dinner.',
+        images: [
+            '/images/alldaydining-1.jpg',
+            '/images/alldaydining-2.jpg',
+            '/images/alldaydining-3.jpg',
+            '/images/alldaydining-4.jpg',
+        ],
+    },
+]
+
 const cuisines = [
     {
         name: 'The Greek coast',
@@ -102,6 +132,16 @@ function splitColumns(items, count) {
 export default function Restaurant() {
     const [colCount, setColCount] = useState(4)
     const [lbIdx, setLbIdx] = useState(null)
+
+    // Dining tabs
+    const [diningTab, setDiningTab] = useState(0)
+    const [diningImg, setDiningImg] = useState(0)
+    const activeDining = diningTabs[diningTab]
+
+    const changeDiningTab = (i) => {
+        setDiningTab(i)
+        setDiningImg(0)
+    }
 
     useEffect(() => {
         const update = () => {
@@ -202,6 +242,7 @@ export default function Restaurant() {
                     </div>
                 </div>
             </section>
+
             {/* ═══ PHILOSOPHY ═══ */}
             <section className="philosophy-section toroni-philosophy">
                 <div className="containerWrapper">
@@ -230,6 +271,67 @@ export default function Restaurant() {
                                 <p className="value-desc">{p.desc}</p>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ DINING TABS ═══ */}
+            <section className="tdn-section">
+                <div className="containerWrapper">
+                    <div style={{ textAlign: 'center' }}>
+                        <span className="sec-label">Dining</span>
+                        <h2 className="sec-title dark">Breakfast to late dinner</h2>
+                        <span className="sec-line center" />
+                    </div>
+
+                    <div className="tdn-tabs" role="tablist">
+                        {diningTabs.map((t, i) => (
+                            <button
+                                key={t.tab}
+                                type="button"
+                                role="tab"
+                                aria-selected={i === diningTab}
+                                className={`tdn-tab ${i === diningTab ? 'active' : ''}`}
+                                onClick={() => changeDiningTab(i)}
+                            >
+                                {t.tab}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="tdn-panel">
+                        <div className="tdn-gallery">
+                            <div className="tdn-main">
+                                <img src={activeDining.images[diningImg]} alt={activeDining.title} />
+                            </div>
+                            <div className="tdn-thumbs">
+                                {activeDining.images.map((src, i) => (
+                                    <button
+                                        key={src}
+                                        type="button"
+                                        className={`tdn-thumb ${i === diningImg ? 'active' : ''}`}
+                                        onClick={() => setDiningImg(i)}
+                                        aria-label={`Show photo ${i + 1}`}
+                                    >
+                                        <img src={src} alt="" />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="tdn-info">
+                            <h3 className="tdn-title">{activeDining.title}</h3>
+                            <p className="tdn-line">
+                                <strong>Cuisine:</strong> {activeDining.cuisine}
+                            </p>
+                            <p className="tdn-line tdn-timing">
+                                <i className="fa-regular fa-clock" /> {activeDining.timing}
+                            </p>
+                            {activeDining.note && <p className="tdn-line">{activeDining.note}</p>}
+                            <Link href="/contact" className="btn-forest" style={{ marginTop: 20 }}>
+                                Reserve a Table
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>

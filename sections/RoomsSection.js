@@ -41,7 +41,15 @@ function normaliseRoom(r, index) {
     longDesc: r.description?.trim() || '',
     tag: r.room_type?.trim() || 'Room',
     tagStyle: TAG_STYLES[index % TAG_STYLES.length],
-    feats: amenities.slice(0, 3).map((a) => a.name?.trim()).filter(Boolean),
+    feats: amenities
+      .slice(0, 6)
+      .map((a) => ({
+        icon: a.icon
+          ? a.icon.replace(/fa-solid\s+|fa-regular\s+|fa-brands\s+/g, '')
+          : 'fa-star',
+        text: a.name?.trim() || '',
+      }))
+      .filter((f) => f.text),
     price,
     mrp: r.mrp,
     selling_price: r.selling_price,
@@ -415,7 +423,9 @@ export default function RoomsSection() {
                     <p className="room-desc">{room.desc}</p>
                     <div className="room-feats">
                       {room.feats.map((f) => (
-                        <span className="room-feat" key={f}>{f}</span>
+                        <span className="room-feat room-feat-icon" key={f.text} title={f.text}>
+                          <i className={`fa ${f.icon}`} aria-hidden="true" />
+                        </span>
                       ))}
                     </div>
                     <div className="room-footer">
