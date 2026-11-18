@@ -81,7 +81,7 @@ const gallery = [
     { id: 3, src: '/images/toroni-gallery-3.jpg', cls: 'wide', cat: 'By the garden' },
     { id: 4, src: '/images/toroni-gallery-4.jpg', cls: 'std', cat: 'The spread' },
     { id: 5, src: '/images/toroni-gallery-5.jpg', cls: 'tall', cat: 'Among the plants' },
-    { id: 6, src: '/images/toroni-gallery-6.jpg', cls: 'std', cat: 'Quiet corners' },
+    
     { id: 7, src: '/images/toroni-gallery-7.jpg', cls: 'wide', cat: 'The heart of TORONI' },
     { id: 8, src: '/images/toroni-gallery-8.jpg', cls: 'tall', cat: 'Under the relief wall' },
     { id: 9, src: '/images/toroni-gallery-9.jpg', cls: 'std', cat: 'The kitchen shelves' },
